@@ -7,7 +7,7 @@ const TransactionsRoutes = require('../routes/transactions.routes');
 const app = express();
 
 // Middleware
-app.use(cors({ origin: 'https://e-commerce-neon-nine.vercel.app/' })); // Izinkan permintaan dari frontend
+app.use(cors()); // Izinkan permintaan dari frontend
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.json());
