@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 8080;
 const app = express();
 const bodyParser = require('body-parser');
 
-app.use(cors({ origin: 'https://e-commerce-neon-nine.vercel.app' })); // Izinkan permintaan dari localhost:3000
+app.use(cors({ origin: '*' })); // Izinkan permintaan dari localhost:3000
 
 // Gunakan middleware bodyParser untuk mengurai body permintaan
 app.use(bodyParser.json());
