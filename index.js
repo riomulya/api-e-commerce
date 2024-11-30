@@ -6,6 +6,7 @@ const cors = require('cors');
 const TransactionsRoutes = require('./routes/transactions.routes');
 
 // const verifyToken = require('./middlewares/auth.middlewares');
+const PORT = process.env.PORT || 8080;
 
 const app = express();
 const bodyParser = require('body-parser');
@@ -25,4 +26,8 @@ app.use(TransactionsRoutes);
 
 app.get('/', (req, res) => {
   res.send('Hello World');
+});
+
+app.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}`);
 });

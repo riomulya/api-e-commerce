@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const TransactionController = require('../api/transaction.controllers.js');
+const TransactionController = require('../controller/transaction.controllers.js');
 
 router.post('/createTransaction', TransactionController.createTransaction);
 router.get('/finishTransaction', TransactionController.finishTransaction);
