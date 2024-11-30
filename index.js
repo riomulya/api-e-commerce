@@ -1,29 +1,27 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
-require('dotenv').config();
 const cors = require('cors');
-
-const TransactionsRoutes = require('./routes/transactions.routes');
-
-// const verifyToken = require('./middlewares/auth.middlewares');
-const PORT = process.env.PORT || 8080;
+const bodyParser = require('body-parser');
+const TransactionsRoutes = require('../routes/transactions.routes');
 
 const app = express();
-const bodyParser = require('body-parser');
 
-app.use(cors({ origin: 'https://e-commerce-neon-nine.vercel.app/' })); // Izinkan permintaan dari localhost:3000
-
-// Gunakan middleware bodyParser untuk mengurai body permintaan
+// Middleware
+app.use(cors({ origin: 'https://e-commerce-neon-nine.vercel.app/' })); // Izinkan permintaan dari frontend
 app.use(bodyParser.json());
-
-app.use(express.json());
 app.use(cookieParser());
-
-// Atau jika ingin mengurai body berdasarkan URL-encoded data
+app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Rute API
 app.use(TransactionsRoutes);
 
+// Default route
 app.get('/', (req, res) => {
-  res.send('Hello World');
+  res.send('Hello World from Express on Vercel!');
 });
+
+// Hapus app.listen() dan ekspor aplikasi Express sebagai fungsi
+module.exports = (req, res) => {
+  app(req, res); // Menangani request dan response dengan Express
+};
